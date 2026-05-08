@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Study Lab</title>
+<style>
+  :root {
+    --bg: #0f1115;
+    --card: #1a1d24;
+    --text: #e8eaed;
+    --muted: #9aa0a6;
+    --accent: #7dd3fc;
+    --border: #2a2f38;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Sans", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+  .container { max-width: 880px; margin: 0 auto; padding: 80px 24px; }
+  header { margin-bottom: 64px; }
+  h1 { font-size: 2.4rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px; }
+  .tagline { color: var(--muted); font-size: 1.05rem; }
+  .accent { color: var(--accent); }
+  section { margin-bottom: 56px; }
+  h2 { font-size: 1.3rem; margin-bottom: 20px; font-weight: 600; }
+  .grid { display: grid; gap: 16px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    transition: border-color 0.15s;
+  }
+  .card:hover { border-color: var(--accent); }
+  .card h3 { font-size: 1.1rem; margin-bottom: 8px; }
+  .card p { color: var(--muted); font-size: 0.95rem; }
+  .empty {
+    color: var(--muted);
+    font-style: italic;
+    padding: 40px 24px;
+    text-align: center;
+    border: 1px dashed var(--border);
+    border-radius: 12px;
+  }
+  footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>AI Study <span class="accent">Lab</span></h1>
+    <p class="tagline">AIを活用したHTML学習教材の試作と公開</p>
+  </header>
+
+  <section>
+    <h2>教材一覧</h2>
+    <div class="grid">
+      <div class="empty">公開準備中。最初の教材を制作中です。</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>このサイトについて</h2>
+    <p style="color: var(--muted);">
+      生成AIを活用して、学習教材を爆速で開発する実験ラボです。<br>
+      業務効率化・資格学習・スキル習得をテーマに、開発過程と完成品をオープンに発信しています。
+    </p>
+  </section>
+
+  <footer>
+    <p>© 2026 AI Study Lab</p>
+  </footer>
+</div>
+</body>
+</html>

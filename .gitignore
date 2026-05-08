@@ -1,0 +1,18 @@
+# 公開リポでも秘密情報は念のため除外
+.env
+.env.local
+secrets/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# エディタ
+.vscode/
+.idea/
+*.swp
+
+# ビルド
+node_modules/
+dist/
+.cache/
