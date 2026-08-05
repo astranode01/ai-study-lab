@@ -1,0 +1,7 @@
+# Cloudflare Pages 用 レスポンスヘッダ設定
+# TDM Reservation Protocol (W3C): 1 = テキスト・データマイニングの権利を留保する宣言
+# 検索インデックスは妨げない（noindexは付けない＝発見されたいので）
+
+/*
+  Tdm-Reservation: 1
+  X-Robots-Tag: noai, noimageai

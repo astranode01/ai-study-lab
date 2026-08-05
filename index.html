@@ -4,79 +4,259 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Study Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0f1115;
-    --card: #1a1d24;
-    --text: #e8eaed;
-    --muted: #9aa0a6;
-    --accent: #7dd3fc;
-    --border: #2a2f38;
+    --bg: #f4f7f5;
+    --bg-soft: #eef2ee;
+    --surface: #ffffff;
+    --text: #1f2a30;
+    --text-soft: #4a5a62;
+    --muted: #889096;
+    --accent: #0d8a7a;
+    --accent-deep: #0a6e62;
+    --accent-soft: #d6efe9;
+    --accent-warm: #e8845a;
+    --border: #dde3df;
+    --shadow: 0 1px 2px rgba(20,40,30,0.04), 0 6px 20px rgba(20,40,30,0.05);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Sans", sans-serif;
+    font-family: "Plus Jakarta Sans", "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", sans-serif;
     background: var(--bg);
     color: var(--text);
-    line-height: 1.7;
+    line-height: 1.8;
     min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
   }
-  .container { max-width: 880px; margin: 0 auto; padding: 80px 24px; }
-  header { margin-bottom: 64px; }
-  h1 { font-size: 2.4rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px; }
-  .tagline { color: var(--muted); font-size: 1.05rem; }
-  .accent { color: var(--accent); }
-  section { margin-bottom: 56px; }
-  h2 { font-size: 1.3rem; margin-bottom: 20px; font-weight: 600; }
-  .grid { display: grid; gap: 16px; }
+  .nav {
+    position: sticky; top: 0;
+    background: rgba(244,247,245,0.88);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    z-index: 10;
+  }
+  .nav-inner {
+    max-width: 980px; margin: 0 auto;
+    padding: 18px 32px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .brand {
+    font-weight: 700; font-size: 1rem; letter-spacing: -0.01em;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .brand-mark {
+    width: 22px; height: 22px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-warm) 100%);
+    border-radius: 7px;
+    position: relative;
+  }
+  .brand-mark::after {
+    content: ""; position: absolute;
+    inset: 5px; background: var(--surface); border-radius: 3px;
+  }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    color: var(--text-soft); text-decoration: none;
+    font-size: 0.92rem; font-weight: 500;
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  .container { max-width: 780px; margin: 0 auto; padding: 0 32px; }
+
+  .hero { padding: 96px 0 72px; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.78rem; font-weight: 600;
+    color: var(--accent-deep);
+    background: var(--accent-soft);
+    padding: 7px 14px; border-radius: 999px;
+    letter-spacing: 0.04em;
+    margin-bottom: 28px;
+  }
+  .eyebrow::before {
+    content: ""; width: 6px; height: 6px;
+    background: var(--accent); border-radius: 50%;
+  }
+  h1 {
+    font-size: clamp(2rem, 4.6vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+    margin-bottom: 22px;
+  }
+  h1 .accent { color: var(--accent); }
+  h1 .underline {
+    background: linear-gradient(transparent 60%, var(--accent-soft) 60%);
+    padding: 0 4px;
+  }
+  .lead {
+    font-size: 1.08rem;
+    color: var(--text-soft);
+    max-width: 640px;
+    margin-bottom: 36px;
+  }
+  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 24px;
+    font-size: 0.95rem; font-weight: 600;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.18s;
+    border: 1px solid transparent;
+  }
+  .btn-primary {
+    background: var(--accent); color: #fff;
+    box-shadow: 0 4px 12px rgba(13,138,122,0.22);
+  }
+  .btn-primary:hover {
+    background: var(--accent-deep);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(13,138,122,0.28);
+  }
+  .btn-ghost {
+    color: var(--text); border-color: var(--border);
+    background: var(--surface);
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  section { padding: 56px 0; }
+  h2 {
+    font-size: 1.55rem; font-weight: 700;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+    display: flex; align-items: center; gap: 10px;
+  }
+  h2::before {
+    content: ""; width: 4px; height: 22px;
+    background: var(--accent); border-radius: 2px;
+  }
+  .section-desc {
+    color: var(--muted); font-size: 0.94rem;
+    margin-bottom: 32px; padding-left: 14px;
+  }
+
+  .grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
+  @media (min-width: 640px) { .grid { grid-template-columns: 1fr 1fr; } }
   .card {
-    background: var(--card);
+    background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px;
-    transition: border-color 0.15s;
+    border-radius: 14px;
+    padding: 26px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
   }
-  .card:hover { border-color: var(--accent); }
-  .card h3 { font-size: 1.1rem; margin-bottom: 8px; }
-  .card p { color: var(--muted); font-size: 0.95rem; }
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    box-shadow: 0 4px 12px rgba(13,138,122,0.1), 0 12px 30px rgba(20,40,30,0.06);
+  }
+  .card h3 {
+    font-size: 1.05rem; margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .card p { color: var(--text-soft); font-size: 0.93rem; line-height: 1.75; }
+  .card-tag {
+    display: inline-block;
+    font-size: 0.7rem; font-weight: 600;
+    color: var(--accent-deep);
+    background: var(--accent-soft);
+    padding: 3px 10px; border-radius: 999px;
+    letter-spacing: 0.04em;
+    margin-bottom: 12px;
+  }
   .empty {
+    grid-column: 1 / -1;
+    text-align: center; padding: 60px 24px;
+    border: 1px dashed var(--border); border-radius: 14px;
+    background: var(--surface);
     color: var(--muted);
-    font-style: italic;
-    padding: 40px 24px;
-    text-align: center;
-    border: 1px dashed var(--border);
-    border-radius: 12px;
   }
-  footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem; }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
+  .empty strong {
+    display: block; color: var(--text-soft);
+    margin-bottom: 6px; font-weight: 600; font-size: 1rem;
+  }
+
+  .about p { color: var(--text-soft); margin-bottom: 14px; }
+  .about p:last-child { margin-bottom: 0; }
+
+  footer {
+    margin-top: 80px; padding: 40px 0 60px;
+    border-top: 1px solid var(--border);
+    color: var(--muted); font-size: 0.88rem;
+    background: var(--bg-soft);
+  }
+  footer .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  footer .heart { color: var(--accent-warm); }
 </style>
 </head>
 <body>
-<div class="container">
-  <header>
-    <h1>AI Study <span class="accent">Lab</span></h1>
-    <p class="tagline">AIを活用したHTML学習教材の試作と公開</p>
-  </header>
 
-  <section>
-    <h2>教材一覧</h2>
-    <div class="grid">
-      <div class="empty">公開準備中。最初の教材を制作中です。</div>
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="brand-mark"></span>AI Study Lab</div>
+    <div class="nav-links">
+      <a href="#materials">教材</a>
+      <a href="#about">概要</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <section class="hero">
+    <span class="eyebrow">LEARNING × AI</span>
+    <h1>AIで、<span class="underline accent">学びをつくる</span>。</h1>
+    <p class="lead">
+      生成AIを活用し、HTMLベースの学習教材を試作・公開しています。<br>
+      業務効率化・資格学習・スキル習得をテーマに、開発の過程と完成品をオープンに発信します。
+    </p>
+    <div class="cta-row">
+      <a href="#materials" class="btn btn-primary">教材を見る →</a>
+      <a href="#about" class="btn btn-ghost">このサイトについて</a>
     </div>
   </section>
 
-  <section>
+  <section id="materials">
+    <h2>教材</h2>
+    <p class="section-desc">完成・公開済みの学習教材一覧</p>
+    <div class="grid">
+      <div class="empty">
+        <strong>準備中</strong>
+        最初の教材を制作中です。近日公開予定。
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
     <h2>このサイトについて</h2>
-    <p style="color: var(--muted);">
-      生成AIを活用して、学習教材を爆速で開発する実験ラボです。<br>
-      業務効率化・資格学習・スキル習得をテーマに、開発過程と完成品をオープンに発信しています。
+    <p class="section-desc">AI Study Lab の取り組み</p>
+    <p>
+      生成AIを使えば、学習教材は驚くほど速く・自由につくれるようになりました。
+      このサイトは、その可能性を試す実験の場です。
+    </p>
+    <p>
+      Power Query や Excel の業務効率化、資格学習、新人教育など、
+      実務で使える小さな教材を継続的に開発しています。
+    </p>
+    <p>
+      作りながら気づいたこと・つまずいたこと・工夫したことも、できるだけそのまま発信していきます。
     </p>
   </section>
 
-  <footer>
-    <p>© 2026 AI Study Lab</p>
-  </footer>
 </div>
+
+<footer>
+  <div class="container">
+    <span>© 2026 AI Study Lab</span>
+    <span>Built with AI · HTML · <span class="heart">♥</span></span>
+  </div>
+</footer>
+
 </body>
 </html>

@@ -16,3 +16,6 @@ Thumbs.db
 node_modules/
 dist/
 .cache/
+
+# 配色見本は非公開側(workspace/_配色見本_preview/)へ移動済み。公開しない
+_preview/

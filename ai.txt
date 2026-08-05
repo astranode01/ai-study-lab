@@ -1,0 +1,11 @@
+# ai.txt — テキスト・データマイニング(TDM)の権利留保 宣言
+# このサイトの全コンテンツは、AIモデルの学習・データセット化・テキストデータマイニングを許諾しません。
+# We reserve all rights against text and data mining (TDM), AI training, and dataset inclusion.
+
+User-agent: *
+Disallow-AI-Training: /
+Disallow-Dataset: /
+Disallow-TDM: /
+
+# 連絡先 / 許諾の問い合わせ: （メールやフォームをここに）
+# Contact for licensing:
